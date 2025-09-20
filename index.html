@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="scripts/index.js" defer></script>
+    <title>Reaction.wtf | Премиум чита</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-link active" data-page="home">Главная</a></li>
+                <li><a href="#" class="nav-link" data-page="profile">Профиль</a></li>
+                <li><a href="#" class="nav-link" data-page="shop">Магазин</a></li>
+                <li><a href="#" class="nav-link" data-page="status">Статус</a></li>
+                <li><a href="#" class="nav-link" data-page="support">Техподдержка</a></li>
+                <li><a href="#" class="nav-link" data-page="admin">Админ</a></li>
+            </ul>
+        </nav>
+    
+            
+    </header>
+    
+    <!-- Основной контент -->
+    <div class="container">
+        <!-- Главная страница -->
+        <div class="page active" id="home-page">
+            <div class="hero">
+                <h2>Премиум читы для ваших игр</h2>
+                <p>Мощные, незаметные и эффективные читы для популярных игр. Получите преимущество над соперниками с нашим программным обеспечением премиум-класса.</p>
+                <button class="btn btn-primary">Купить подписку</button>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>🔒 Полная анонимность</h3>
+                    <p>Наши читы невозможно обнаружить античит-системами благодаря уникальным технологиям обфускации.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ Максимальная производительность</h3>
+                    <p>Оптимизированный код обеспечивает минимальное влияние на производительность вашей системы.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔄 Регулярные обновления</h3>
+                    <p>Мы оперативно обновляем наши продукты после каждого обновления игры.</p>
+                </div>
+            </div>
+        </div>
+            <div class="page" id="support-page">
+                <h2>Техническая поддержка</h2>
+                
+                <div class="support-actions">
+                    <button id="create-ticket-btn" class="btn btn-primary">Создать новый тикет</button>
+                </div>
+                
+                <div class="tickets-container">
+                    <div class="tickets-list" id="tickets-list">
+                        <!-- Список тикетов будет загружен через JS -->
+                    </div>
+                </div>
+            </div>
+        <!-- Страница авторизации -->
+        <div class="page" id="auth-page">
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <div class="auth-tab active" data-tab="login">Вход</div>
+                    <div class="auth-tab" data-tab="register">Регистрация</div>
+                </div>
+                
+                <form class="auth-form active" id="login-form">
+                    <div class="form-group">
+                        <label for="login-username">Имя пользователя</label>
+                        <input type="text" id="login-username" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Пароль</label>
+                        <input type="password" id="login-password" class="form-control" required>
+                    </div>
+                    
+                    <div id="login-error" class="error-message hidden"></div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Войти</button>
+                </form>
+                
+                <form class="auth-form" id="register-form">
+                    <div class="form-group">
+                        <label for="register-username">Имя пользователя</label>
+                        <input type="text" id="register-username" class="form-control" required minlength="4">
+                        <div class="username-requirements">От 4 символов, только буквы и цифры</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password">Пароль</label>
+                        <input type="password" id="register-password" class="form-control" required minlength="6">
+                        <div class="password-requirements">Не менее 6 символов</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-confirm">Подтвердите пароль</label>
+                        <input type="password" id="register-confirm" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="invite-key">Пригласительный ключ</label>
+                        <input type="text" id="invite-key" class="form-control" required>
+                        <div class="invite-help">Получить ключ можно у администратора</div>
+                    </div>
+                    
+                    <div id="register-error" class="error-message hidden"></div>
+                    <div id="register-success" class="success-message hidden"></div>
+                    
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Профиль пользователя -->
+        <div class="page" id="profile-page">
+            <div class="profile-header">
+                <div class="avatar">U</div>
+                <div class="user-info">
+                    <h2 id="user-name">Username</h2>
+                    <p>Роль: <span id="user-role">user</span></p>
+                </div>
+            </div>
+            <div class="user-stats">
+                <div class="stat-card">
+                    <h3>Баланс</h3>
+                    <p id="user-balance">0 ₽</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Подписка</h3>
+                    <p id="user-subscription">30 дней</p>
+                    <p id="subscription-status">активна</p>
+                </div>
+                <div class="stat-card">
+                    <h3>HWID</h3>
+                    <p id="user-hwid">XXXXX-XXXXX-XXXXX</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Уникальный ID</h3>
+                    <p id="user-unical">XXXXX-XXXXX-XXXXX</p>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-outline" id="freeze-btn">Заморозить подписку</button>
+                <button class="btn btn-outline" id="unfreeze-btn">Разморозить подписку</button>
+                <button class="btn btn-outline" id="generate-hash">Сгенерировать хеш</button>
+                <button class="btn btn-primary" id="download-loader">Скачать Loader</button>
+                <button class="btn btn-outline" id="logout-btn">Выйти</button>
+            </div>
+                <div class="invite-section hidden" id="invite-section">
+                    <h3>Ваш инвайт ключ</h3>
+                    <div class="invite-key-container">
+                        <div class="invite-key" id="invite-key">XXXX-XXXX-XXXX</div>
+                        <button class="btn btn-outline" id="copy-invite">Копировать</button>
+                        <button class="btn btn-primary" id="generate-invite">Сгенерировать</button>
+                    </div>
+                    <p class="invite-hint">Вы можете пригласить друга, который получит 3 дня подписки при регистрации</p>
+                </div>
+			<div class="profile-edit">
+                    <div class="pedit">
+                        <h3>Редактировать профиль</h3>
+                    </div>
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label for="display-name">Отображаемое имя</label>
+                            <input type="text" id="display-name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar-url">URL аватарки</label>
+                            <input type="text" id="avatar-url" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                    </form>
+                </div>
+			</div>
+        
+        <div class="page" id="admin-page">
+            <h2>Административная панель</h2>
+            
+            <div class="admin-tabs">
+                <div class="admin-tab active" data-tab="users">Пользователи</div>
+                <div class="admin-tab" data-tab="keys">Ключи</div>
+                <div class="admin-tab" data-tab="stats">Статистика</div>
+            </div>
+            
+            <div class="admin-content active" id="users-tab">
+                <div class="search-box">
+                    <input type="text" id="user-search" placeholder="Поиск пользователя">
+                    <button class="btn btn-outline" id="search-user">Найти</button>
+                </div>
+                
+                <div class="user-details" id="user-details">
+                </div>
+                
+                <div class="user-actions">
+                    <button class="btn btn-outline" id="freeze-user">Заморозить подписку</button>
+                    <button class="btn btn-outline" id="change-role">Изменить роль</button>
+                    <button class="btn btn-outline" id="add-balance">Добавить баланс</button>
+                    <button class="btn btn-outline" id="update-list">Обновить список</button>
+                </div>
+            </div>
+            
+            <div class="admin-content" id="keys-tab">
+                <div class="key-generation">
+                    <select id="key-role" class="form-control">
+                        <option value="User">User</option>
+                        <option value="Beta">Beta</option>
+                        <option value="Alpha">Alpha</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                    <button class="btn btn-primary" id="generate-key">Сгенерировать ключ</button>
+                </div>
+                
+                <div class="key-list" id="key-list">
+                </div>
+            </div>
+            
+            <div class="admin-content" id="stats-tab">
+                <div class="stat-cards">
+                    <div class="stat-card">
+                        <h3>Всего пользователей</h3>
+                        <div class="value" id="total-users">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Активных сегодня</h3>
+                        <div class="value" id="active-today">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Новых за месяц</h3>
+                        <div class="value" id="new-month">0</div>
+                    </div>
+                </div>
+                
+                <div class="stat-charts">
+                </div>
+            </div>
+        </div>
+        
+        <div class="page" id="status-page">
+            <h2>Статус системы</h2>
+            <p class="last-updated">Последнее обновление: <span id="last-updated-time">только что</span></p>
+            
+            <div class="status-grid">
+                <div class="status-card">
+                    <h3>Использование памяти</h3>
+                    <p data-type="memory">0%</p>
+                    <div class="progress-bar">
+                        <div class="progress" data-type="memory" style="width: 0%"></div>
+                    </div>
+                    <div class="status-details">
+                        <p>Всего: <span id="total-memory">-</span> MB</p>
+                        <p>Использовано: <span id="used-memory">-</span> MB</p>
+                    </div>
+                </div>
+                <div class="status-card">
+                    <h3>Использование CPU</h3>
+                    <p data-type="cpu">0%</p>
+                    <div class="progress-bar">
+                        <div class="progress" data-type="cpu" style="width: 0%"></div>
+                    </div>
+                    <div class="status-details">
+                        <p>Ядер: <span id="cpu-cores">-</span></p>
+                        <p>Частота: <span id="cpu-freq">-</span> GHz</p>
+                    </div>
+                </div>
+                <div class="status-card">
+                    <h3>Сетевая активность</h3>
+                    <p data-type="network">0 KB/s</p>
+                    <div class="progress-bar">
+                        <div class="progress" data-type="network" style="width: 0%"></div>
+                    </div>
+                    <div class="status-details">
+                        <p>Вход: <span id="network-in">-</span> KB/s</p>
+                        <p>Выход: <span id="network-out">-</span> KB/s</p>
+                    </div>
+                </div>
+                <div class="status-card">
+                    <h3>Активные пользователи</h3>
+                    <p id="active-users">-</p>
+                    <div class="status-details">
+                        <p>Сегодня: <span id="users-today">-</span></p>
+                        <p>За месяц: <span id="users-month">-</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Форум -->
+       <div class="page" id="forum-page">
+            <h2>Форум сообщества</h2>
+            
+            <div class="forum-container">
+                <div class="forum-categories">
+                    <h3>Категории</h3>
+                    <ul class="category-list" id="category-list">
+                        <!-- Категории будут загружены через JS -->
+                    </ul>
+                </div>
+                
+                <div class="topics-list" id="topics-list">
+                    <!-- Темы будут загружены через JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Страница создания темы -->
+        <div class="page" id="create-topic-page">
+            <h2>Создать новую тему</h2>
+            <form id="create-topic-form">
+                <div class="form-group">
+                    <label for="topic-title">Заголовок</label>
+                    <input type="text" id="topic-title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="topic-category">Категория</label>
+                    <select id="topic-category" class="form-control" required>
+                        <!-- Категории будут загружены через JS -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="topic-content">Содержание</label>
+                    <textarea id="topic-content" class="form-control" rows="10" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Создать тему</button>
+            </form>
+        </div>
+
+        <!-- Страница темы -->
+        <div class="page" id="topic-page">
+            <div id="topic-container">
+                <!-- Контент темы будет загружен через JS -->
+            </div>
+        </div>
+        <div class="page" id="shop-page">
+    <h2>Магазин подписок</h2>
+    <p style="margin-bottom: 2rem;">Выберите категорию и подходящую подписку</p>
+
+    <div class="shop-tabs">
+        <button class="btn btn-outline active" data-tab="cs2">CS2</button>
+        <button class="btn btn-outline" data-tab="rust">Rust</button>
+    </div>
+
+    <div class="shop-section active" id="cs2-shop">
+        <h3>CS2</h3>
+        <div class="shop-subsection">
+            <h4>Internal</h4>
+            <div class="features">
+                <div class="feature-card"><h3>7 дней</h3><p>100 ₽</p></div>
+                <div class="feature-card"><h3>14 дней</h3><p>200 ₽</p></div>
+                <div class="feature-card"><h3>30 дней</h3><p>325 ₽</p></div>
+            </div>
+
+            <h4 style="margin-top: 2rem;">External</h4>
+            <div class="features">
+                <div class="feature-card"><h3>7 дней</h3><p>70 ₽</p></div>
+                <div class="feature-card"><h3>14 дней</h3><p>200 ₽</p></div>
+                <div class="feature-card"><h3>30 дней</h3><p>210 ₽</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="shop-section" id="rust-shop">
+        <div class="shop-subtabs">
+            <button class="btn btn-outline active" data-subtab="devblog">Devblog</button>
+            <button class="btn btn-outline" data-subtab="last">Last</button>
+        </div>
+
+    <div class="rust-subsection active" id="devblog">
+        <h3>Rust — Devblog (цены на 30% ниже)</h3>
+        <div class="shop-subsection">
+            <h4>Internal</h4>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>7 дней</h3>
+                    <p>175 ₽</p>
+                    <button class="btn btn-outline" data-product="rust_internal_7_devblog">Купить</button>
+                </div>
+                <div class="feature-card">
+                    <h3>14 дней</h3>
+                    <p>280 ₽</p>
+                    <button class="btn btn-outline" data-product="rust_internal_14_devblog">Купить</button>
+                </div>
+                <div class="feature-card">
+                    <h3>30 дней</h3>
+                    <p>420 ₽</p>
+                    <button class="btn btn-outline" data-product="rust_internal_30_devblog">Купить</button>
+                </div>
+            </div>
+
+            <h4 style="margin-top: 2rem;">External</h4>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>7 дней</h3>
+                    <p>70 ₽</p>
+                    <button class="btn btn-outline" data-product="rust_external_7_devblog">Купить</button>
+                </div>
+                <div class="feature-card">
+                    <h3>14 дней</h3>
+                    <p>90 ₽</p>
+                    <button class="btn btn-outline" data-product="rust_external_14_devblog">Купить</button>
+                </div>
+                <div class="feature-card">
+                    <h3>30 дней</h3>
+                    <p>230 ₽</p>
+                    <button class="btn btn-outline" data-product="rust_external_30_devblog">Купить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+        <div id="error-modal" class="custom-modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="error-title">Ошибка</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="error-message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="error-ok-btn">OK</button>
+                </div>
+            </div>
+        </div>
+    <!-- Подвал -->
+    <footer>
+        <p>© 2025 Reaction.wtf. Все права защищены.</p>
+        <p>Служба поддержки: support@Reaction.wtf</p>
+    </footer>
+    <div id="notification" class="notification">
+        Key copied to clipboard!
+    </div>
+</body>
+</html>
